@@ -134,15 +134,19 @@
   <ItemGroup>
     <Compile Include="App_Start\AnimalsContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\CreateUserConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\LoginContext.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AnimalsController.cs" />
+    <Compile Include="Controllers\CreateUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AnimalsModel.cs" />
+    <Compile Include="Models\CreateUserModel.cs" />
     <Compile Include="Models\LoginModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -167,10 +171,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\LoginStyle.css" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -189,6 +192,15 @@
     <Content Include="Views\Animals\Create.cshtml" />
     <Content Include="Views\Animals\Edit.cshtml" />
     <Content Include="Views\Animals\Delete.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\Details.cshtml" />
+    <Content Include="Views\Animals\Login.cshtml" />
+    <Content Include="Views\Animals\Record.cshtml" />
+    <Content Include="Views\CreateUser\Create.cshtml" />
+    <Content Include="Views\CreateUser\Details.cshtml" />
+    <Content Include="Views\CreateUser\Index.cshtml" />
+    <Content Include="Views\CreateUser\Delete.cshtml" />
+    <Content Include="Views\CreateUser\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

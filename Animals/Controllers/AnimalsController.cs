@@ -9,6 +9,8 @@ using System.Configuration;
 using Animals.App_Start;
 using Animals.Models;
 using MongoDB.Driver;
+using System.Web.UI.WebControls;
+using MongoDB.Driver.Linq;
 
 namespace Animals.Controllers
 {
@@ -17,6 +19,8 @@ namespace Animals.Controllers
         private AnimalsContext animalsContext;
 
         private IMongoCollection<AnimalsModel> animalsCollection;
+        private IMongoCollection<LoginModels> loginsCollection;
+        private IMongoCollection<AnimalsModel> createUserCollection;
 
         public AnimalsController()
         {
@@ -111,6 +115,46 @@ namespace Animals.Controllers
             {
                 return View();
             }
+        }
+
+        static List<LoginModels> logins = new List<LoginModels>();
+        public ActionResult Record(LoginModels logins)
+        {
+            return View(logins);
+        }
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Login(string Username, string Password, LoginModels login)
+        {
+            if (!ModelState.IsValid)
+            {
+                var W = loginsCollection.AsQueryable<LoginModels>().Where(w => w.Username == Username && w.Password == Password).FirstOrDefault();
+                try
+                {
+
+                    if (Username == W.Username && Password == W.Password)
+                    {
+                        return RedirectToAction("Index","Animals");
+                    }
+                    else
+                    {
+                        return View("Index");
+                    }
+                }
+                catch (NullReferenceException)
+                {
+                    ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không chính xác !");
+                    return View("Login");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không chính xác !");
+            }
+            return View("Login");
         }
     }
 }

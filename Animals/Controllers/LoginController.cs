@@ -3,37 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MongoDB.Bson;
+using MongoDB.Driver.Core;
+using System.Configuration;
+using Animals.App_Start;
 using Animals.Models;
+using MongoDB.Driver;
 
 namespace Animals.Controllers
 {
-    public class HomeController : Controller
+    public class LoginController : Controller
     {
+        static List<LoginModels> logins = new List<LoginModels>();
         public ActionResult Index()
         {
-            return View();
+            return View(logins);
         }
-
-        public ActionResult About()
+        public ActionResult Record(LoginModels logins)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return View(logins);
         }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-        static List<LoginModels> logins = new List<LoginModels>();
         public ActionResult Login()
         {
-            ViewBag.Message = "Your Login page.";
-
             return View();
         }
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Login(LoginModels login)
         {
             if (!ModelState.IsValid)
